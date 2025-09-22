@@ -1,13 +1,17 @@
 const router = require('express').Router();
-const postRouter = require('./postRouter');
-const formatResponse = require('../utils/formatResponse');
-const authRouter = require('./authRouter');
 
-router.use('/posts', postRouter);
-router.use('/auth', authRouter);
-  
+const uploadRouter = require('./uploadRouter');
+const chatRouter = require('./chatRouter');
+const formatResponse = require('../utils/formatResponse');
+
+// API маршруты
+
+router.use('/upload', uploadRouter);
+router.use('/chat', chatRouter);
+
+// 404 обработчик
 router.use((req, res) => {
-  res.status(404).json(formatResponse(404, 'Not found'));
+  res.status(404).json(formatResponse(404, 'Not found'));
 });
 
 module.exports = router;
