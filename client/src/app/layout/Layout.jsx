@@ -1,12 +1,10 @@
-import React from 'react';
-import { Outlet } from 'react-router';
-import Header from '../../widgets/Header/Header';
+import React from "react";
+import { Outlet } from "react-router";
 
-export default function Layout({ user, logoutHandler }) {
+export default function Layout() {
   return (
     <>
-      <Header user={user} setUser={logoutHandler} />
-      <main style={{ padding: '2rem' }}>
+      <main>
         <Outlet />
       </main>
     </>
