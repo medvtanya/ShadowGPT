@@ -1,5 +1,6 @@
 const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require('uuid');
+const { SESSION_TTL_HOURS } = require('../configs/envConfig');
 
 class PdfService {
   // Хранилище сессий (в реальном проекте это была бы база данных)
@@ -55,6 +56,15 @@ class PdfService {
         delete this.sessions[sessionId];
       }
     });
+  }
+
+  // Запускает периодическую очистку
+  static initCleanupScheduler() {
+    const intervalMs = Math.max(5 * 60 * 1000, (SESSION_TTL_HOURS * 60 * 60 * 1000) / 4);
+    if (this._cleanupInterval) return;
+    this._cleanupInterval = setInterval(() => {
+      this.cleanupOldSessions(SESSION_TTL_HOURS * 60 * 60 * 1000);
+    }, intervalMs);
   }
 }
 

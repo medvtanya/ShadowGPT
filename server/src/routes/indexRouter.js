@@ -3,6 +3,10 @@ const router = require('express').Router();
 const uploadRouter = require('./uploadRouter');
 const chatRouter = require('./chatRouter');
 const formatResponse = require('../utils/formatResponse');
+// Health under /api
+router.get('/health', (req, res) => {
+  res.status(200).json(formatResponse(200, 'OK'));
+});
 
 // API маршруты
 
