@@ -9,7 +9,7 @@ class ChatController {
       const { sessionId, question } = req.body;
 
       // Валидация входных данных
-      if (!sessionId || !question) {
+      if (!sessionId || !question || typeof question !== 'string' || question.trim().length === 0) {
         return res.status(400).json(
           formatResponse(400, 'Missing required fields', null, 'sessionId and question are required')
         );

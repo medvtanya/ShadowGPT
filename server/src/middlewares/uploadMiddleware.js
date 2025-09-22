@@ -1,4 +1,5 @@
 const multer = require('multer');
+const { MAX_FILE_SIZE_MB } = require('../configs/envConfig');
 
 // Настройка multer для загрузки файлов
 const storage = multer.memoryStorage();
@@ -16,7 +17,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB лимит
+    fileSize: MAX_FILE_SIZE_MB * 1024 * 1024,
   },
 });
 
