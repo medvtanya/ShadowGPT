@@ -1,8 +1,7 @@
-import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { ToastProvider } from '../../shared/ui/Toast';
 
-export default function Layout(): JSX.Element {
+export default function Layout() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 

@@ -3,17 +3,14 @@ import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/re
 import { MemoryRouter } from 'react-router-dom';
 import { ToastProvider } from '../../shared/ui/Toast';
 import Upload from '../../pages/Upload';
-import * as axiosModule from '../../shared/lib/axiosInstance';
 
 const mockPost = vi.fn();
 
-vi.mock('../../shared/lib/axiosInstance', async (orig) => {
-  const mod = await orig();
-  return {
-    ...mod,
-    axiosInstance: { post: (...args: unknown[]) => mockPost(...args) },
-  } as unknown as typeof mod;
-});
+vi.mock('../../shared/lib/axiosInstance', () => ({
+  axiosInstance: { 
+    post: (...args: unknown[]) => mockPost(...args) 
+  }
+}));
 
 describe('Upload page', () => {
   beforeEach(() => {

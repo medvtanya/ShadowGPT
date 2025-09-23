@@ -17,7 +17,7 @@ cp .env_example .env
 
 2. Заполните переменные окружения в `.env`:
 ```
-PORT=3001
+PORT=3000
 OPENAI_API_KEY=your_openai_api_key_here
 # Необязательно:
 OPENAI_MODEL=gpt-4o-mini

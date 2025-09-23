@@ -14,7 +14,7 @@ type Message = {
 
 const storageKey = (sessionId: string) => `chat-history:${sessionId}`;
 
-export default function Workspace(): JSX.Element {
+export default function Workspace(){
   const navigate = useNavigate();
   const params = useParams<{ sessionId?: string }>();
   const [sessionId, setSessionId] = useState<string | null>(params.sessionId || null);

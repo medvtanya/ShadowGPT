@@ -4,7 +4,7 @@ import { axiosInstance } from '../shared/lib/axiosInstance';
 import type { UploadResponse } from '../types/upload';
 import { useToast } from '../shared/ui/Toast';
 
-export default function Upload(): JSX.Element {
+export default function Upload() {
   const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
