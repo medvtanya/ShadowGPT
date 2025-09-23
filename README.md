@@ -41,6 +41,38 @@ npm run dev
 npm start
 ```
 
+
+# ShadowGPT Client
+
+React клиентское приложение для ShadowGPT с использованием Vite.
+
+## Установка
+
+```bash
+npm install
+
+Скопируйте `.env_example` в `.env`:
+```bash
+cp .env_example .env
+```
+
+Перезапустите клиент после изменения .env.
+
+
+
+## Запуск
+
+```bash
+npm run dev
+
+## Приложение будет доступно по адресу: http://localhost:5173
+
+##Сборка для продакшн
+
+```bash
+npm run build
+
+
 ## Тестирование
 
 ```bash
@@ -52,11 +84,3 @@ npm run test:watch
 
 # Проверка кода линтером
 npm run lint
-
-# Автоисправление кода
-npm run lint:fix
-
-# Форматирование кода
-npm run format
-```
-
