@@ -1,21 +1,18 @@
-import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../layout/Layout';
-import Upload from '../../pages/Upload';
-import NotFound from '../../pages/NotFound';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "../layout/Layout";
+import Workspace from "../../pages/Workspace";
+import NotFound from "../../pages/NotFound";
 
 export default function Router() {
   return createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <Layout />,
       children: [
-        { index: true, element: <Upload /> },
-        { path: 'chat/:sessionId', element: <div>Chat page placeholder</div> },
-        { path: '*', element: <NotFound /> },
+        { index: true, element: <Workspace /> },
+        { path: "chat/:sessionId", element: <Workspace /> },
+        { path: "*", element: <NotFound /> },
       ],
     },
   ]);
 }
-
-

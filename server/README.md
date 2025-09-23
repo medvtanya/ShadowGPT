@@ -17,9 +17,17 @@ cp .env_example .env
 
 2. Заполните переменные окружения в `.env`:
 ```
-PORT=3001
+PORT=3000
 OPENAI_API_KEY=your_openai_api_key_here
+# Необязательно:
+OPENAI_MODEL=gpt-4o-mini
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX=100
+MAX_FILE_SIZE_MB=10
+SESSION_TTL_HOURS=24
 ```
+
+Перезапустите сервер после изменения `.env`.
 
 ## Запуск
 
@@ -58,7 +66,7 @@ npm start
 
 ### 1. Загрузка PDF
 ```bash
-curl -X POST http://localhost:3001/api/upload \
+curl -X POST http://localhost:3000/api/upload
   -F "file=@document.pdf"
 ```
 
@@ -76,7 +84,7 @@ curl -X POST http://localhost:3001/api/upload \
 
 ### 2. Отправка сообщения в чат
 ```bash
-curl -X POST http://localhost:3001/api/chat \
+curl -X POST http://localhost:3000/api/chat \
   -H "Content-Type: application/json" \
   -d '{
     "sessionId": "uuid-here",

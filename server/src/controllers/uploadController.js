@@ -5,8 +5,12 @@ class UploadController {
   // Загрузка PDF файла
   static async uploadPdf(req, res) {
     try {
+      console.log('[UploadController] headers', req.headers);
+      console.log('[UploadController] file meta', req.file && { originalname: req.file.originalname, mimetype: req.file.mimetype, size: req.file.size });
+
       // Проверяем, что файл был загружен
       if (!req.file) {
+        console.warn('[UploadController] no file in request');
         return res.status(400).json(
           formatResponse(400, 'No PDF file uploaded', null, 'File is required')
         );
@@ -14,6 +18,7 @@ class UploadController {
 
       // Извлекаем текст из PDF
       const pdfText = await PdfService.extractTextFromPdf(req.file.buffer);
+      console.log('[UploadController] parsed text length', pdfText && pdfText.length);
 
       // Проверяем, что текст был извлечен
       if (!pdfText || pdfText.trim().length === 0) {
@@ -24,6 +29,7 @@ class UploadController {
 
       // Создаем новую сессию
       const sessionId = PdfService.createSession(pdfText);
+      console.log('[UploadController] session created', sessionId);
 
       res.status(200).json(
         formatResponse(200, 'PDF uploaded and processed successfully', {

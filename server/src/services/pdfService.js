@@ -9,16 +9,20 @@ class PdfService {
   // Извлечение текста из PDF
   static async extractTextFromPdf(buffer) {
     try {
+      console.log('[PdfService] start parse, buffer length', buffer && buffer.length);
       const data = await pdfParse(buffer);
+      console.log('[PdfService] parsed ok, text length', data && data.text && data.text.length);
       return data.text;
     } catch (error) {
       // Фолбэк: попытаться вернуть текст из буфера, чтобы не падать в тестовой среде
       try {
         const fallback = buffer.toString('utf8');
         if (fallback && fallback.trim().length > 0) {
+          console.warn('[PdfService] pdf-parse failed, using utf8 fallback, length', fallback.length);
           return fallback;
         }
       } catch (_) {}
+      console.error('[PdfService] parse error', error && error.message);
       throw new Error(`Failed to parse PDF: ${error.message}`);
     }
   }
